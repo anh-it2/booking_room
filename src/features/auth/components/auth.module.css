@@ -1,0 +1,272 @@
+.hero-section{
+    width: 100%;
+    padding: 60px 0;
+    background-color: #fff;
+}
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+    align-items: center;
+    perspective: 1200px;
+    height: 100vh;
+}
+.left{
+    grid-column: span 4 ;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+.right{
+    grid-column: span 8;
+}
+.title{
+    font-size: 4.25rem;
+    color: rgb(11, 53, 88);
+    font-weight: 700;
+    line-height: 1.1;
+    padding-bottom: 20px;
+}
+.sub-title{
+    font-size: 1.25rem;
+    color: rgb(71, 103, 136);
+    font-weight: 400;
+    line-height: 1.4;
+    padding-bottom: 24px;
+}
+.user-action{
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+}
+.dividers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+    color: #607b98;
+}
+.dividers::before, .dividers::after{
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #e5e5e5 ;
+}
+.dividers::before{
+    margin-right: 5px;
+}
+.dividers::after{
+    margin-left: 5px;
+}
+.sign-up{
+    font-size: 0.875rem;
+    line-height: 1.2;
+    font-weight: 500;   
+    white-space: nowrap;
+}
+.link{
+    color: blue;
+}
+.link:hover{
+    color: red;
+}
+.link:active{
+    color: purple
+}
+.card{
+    position: absolute;
+    top: 70px;
+    right: 10px;
+    border: 1px solid rgb(11, 53, 88);
+    box-shadow: 0px 0px 5px rgb(11, 53, 88);
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 1.5s ease;
+    width: 700px;
+    height: 500px;
+    border-radius: 20px;
+    background-color: rgba(249, 250, 251, 1);
+    display: flex;
+    flex-direction: column;
+}
+.show{
+    opacity: 1;
+    transform: rotateY(0deg) translateZ(0);
+    z-index: 1;
+}
+.hide{
+    opacity: 0.3;
+    transform: rotateY(-90deg) translateZ(-50px);
+}
+.card-title{
+    color: rgb(11, 53, 88);
+    background-color: white;
+    padding: 24px;
+    border-top-right-radius: 20px ;
+    border-top-left-radius: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+.work-flow{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.flow{
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 275px;
+    gap: 30px;
+}
+.pin{
+    position: absolute;
+    top:20px;
+    left: 20px;
+    background-color: rgba(230, 240, 255, 1);
+    padding: 5px;
+    border-radius: 10px;
+    color: blue;
+}
+.work-flow-header{
+    color: #395b77;
+    font-weight: bold;
+}
+.flow-detail{
+    border: 2px solid blue;
+    padding: 10px;
+    border-radius: 20px;
+    color: rgb(11, 53, 88);
+    font-weight: 500;
+}
+.flow-action{
+    background-color: rgba(230, 240, 255, 1);
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: #395b77;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    gap: 10px;
+}
+.wrapper{
+    width: 100%;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(11,1fr);
+    gap: 24px;
+}
+.right-card{
+    grid-column: span 3;
+}
+.middle-card{
+    grid-column: span 5;
+    border-left: 0.5px solid rgba(11, 53, 88, 0.278);
+    border-right: 0.5px solid rgba(11, 53, 88, 0.278);
+}
+.left-card{
+    grid-column: span 3;
+}
+.middle-card{
+    padding: 20px;
+}
+.middle-title{
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(13, 55, 89, 1);
+}
+.footer-title{
+    font-weight: bold;
+}
+.time-zone{
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+.select-time-zone{
+    background-color: transparent;
+    border: none;
+    font-weight: 450;
+}
+.logo{
+    background-color: transparent;
+}
+.left-title{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+}
+.image-person{
+    border-radius: 50%;
+    display: block;
+}
+.meeting-infor{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.time, .plat-form{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.infor{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+.right-card{
+    padding-top: 40px;
+    padding-right: 20px;
+}
+.grid{  
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    margin-top: 20px;
+}
+.grid button:nth-child(1),
+.grid button:nth-child(4),
+.grid button:nth-child(5),
+.grid button:nth-child(6) {
+  grid-column: span 2; /* các slot đơn dài cả hàng */
+}
+.grid button{
+    padding: 15px 5px;
+    color:#006bff;
+    background-color: transparent;
+    border: 2px solid #006bff;
+    font-weight: bold;
+}
+.confirms{
+    background-color: #006bff;
+    color: white;
+}
+.person-infor{
+    width: 100%;
+}
+@media only screen and (max-width: 1100px) {
+    .right{
+        display: none;
+    }
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .left{
+        width: 70%;
+        
+    }
+}

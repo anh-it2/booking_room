@@ -1,0 +1,71 @@
+.calendar{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+}
+.calendar-weekdays{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    gap: 10px
+}
+.week-day{
+    font-size: 14px;
+    color: rgba(21, 119, 255, 1);
+}
+.calendar-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.change-month{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 600;
+}
+.change-month:hover{
+    background-color: rgba(230, 240, 255, 1);
+    color: rgba(21, 119, 255, 1);
+}
+.month{
+    width: 120px;
+    text-align: center;
+    margin-left: 10px;
+    color: rgba(21, 119, 255, 1);
+}
+.date{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+}
+.date:hover{
+    background-color: rgba(21, 119, 255, 1);
+    border-radius: 50%;
+    color: white;
+    font-weight:600 ;
+}
+.active{
+    background-color: rgba(21, 119, 255, 1);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    font-weight: 600;
+}

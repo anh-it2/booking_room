@@ -1,0 +1,26 @@
+.navbar{
+    width: 100%;
+    height: 78px;
+    position: sticky;
+    box-shadow: 0px 0px 3px rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.name{
+    color: rgb(0, 107, 255);
+    font-size: 40px;
+}
+.nav-menu{
+    list-style-type: none;
+}
+.user-action{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
