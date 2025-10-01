@@ -28,11 +28,9 @@ import {
   SidebarMenuSubItem,
   SidebarRail
 } from '@/components/ui/sidebar';
-import { UserAvatarProfile } from '@/components/user-avatar-profile';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { useLoadingState } from '@/store/useLoadingState';
 import { NavItem } from '@/types';
-import { SignOutButton, useUser } from '@clerk/nextjs';
 import {
   IconBell,
   IconChevronRight,
@@ -63,7 +61,6 @@ export default function AppSidebar({ navItems }: { navItems: NavItem[] }) {
   const setLoading = useLoadingState((state) => state.setLoading);
   const pathname = usePathname();
   const { isOpen } = useMediaQuery();
-  const { user } = useUser();
   const router = useRouter();
   const handleSwitchTenant = (_tenantId: string) => {
     // Tenant switching functionality would be implemented here
@@ -165,13 +162,13 @@ export default function AppSidebar({ navItems }: { navItems: NavItem[] }) {
                   size='lg'
                   className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
                 >
-                  {user && (
+                  {/* {user && (
                     <UserAvatarProfile
                       className='h-8 w-8 rounded-lg'
                       showInfo
                       user={user}
                     />
-                  )}
+                  )} */}
                   <IconChevronsDown className='ml-auto size-4' />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
@@ -183,13 +180,13 @@ export default function AppSidebar({ navItems }: { navItems: NavItem[] }) {
               >
                 <DropdownMenuLabel className='p-0 font-normal'>
                   <div className='px-1 py-1.5'>
-                    {user && (
+                    {/* {user && (
                       <UserAvatarProfile
                         className='h-8 w-8 rounded-lg'
                         showInfo
                         user={user}
                       />
-                    )}
+                    )} */}
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
@@ -213,7 +210,7 @@ export default function AppSidebar({ navItems }: { navItems: NavItem[] }) {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <IconLogout className='mr-2 h-4 w-4' />
-                  <SignOutButton redirectUrl='/auth/sign-in' />
+                  {/* <SignOutButton redirectUrl='/auth/sign-in' /> */}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
