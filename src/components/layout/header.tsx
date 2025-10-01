@@ -4,7 +4,6 @@ import { ThemeSelector } from '../theme-selector';
 import { Separator } from '../ui/separator';
 import { SidebarTrigger } from '../ui/sidebar';
 import { ModeToggle } from './ThemeToggle/theme-toggle';
-import { UserNav } from './user-nav';
 
 export default function Header() {
   return (
@@ -16,11 +15,9 @@ export default function Header() {
       </div>
 
       <div className='flex items-center gap-2 px-4'>
-        
         <div className='hidden md:flex'>
           <SearchInput />
         </div>
-        <UserNav />
         <ModeToggle />
         <ThemeSelector />
       </div>
