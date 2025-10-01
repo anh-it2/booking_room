@@ -28,7 +28,9 @@ import {
   SidebarMenuSubItem,
   SidebarRail
 } from '@/components/ui/sidebar';
+import { baseUrl } from '@/config/baseUrl';
 import { useMediaQuery } from '@/hooks/use-media-query';
+import { postApi } from '@/lib/apiFetch';
 import { useLoadingState } from '@/store/useLoadingState';
 import { NavItem } from '@/types';
 import {
@@ -43,8 +45,10 @@ import {
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import * as React from 'react';
+import { toast } from 'sonner';
 import { Icons } from '../icons';
 import { OrgSwitcher } from '../org-switcher';
+import { Button } from '../ui/button';
 export const company = {
   name: 'Acme Inc',
   logo: IconPhotoUp,
@@ -64,6 +68,15 @@ export default function AppSidebar({ navItems }: { navItems: NavItem[] }) {
   const router = useRouter();
   const handleSwitchTenant = (_tenantId: string) => {
     // Tenant switching functionality would be implemented here
+  };
+  const handleSignOutClick = async () => {
+    try {
+      await postApi(`${baseUrl}/api/auth/logout`, {}, null);
+      sessionStorage.removeItem('accessToken');
+      router.push('/');
+    } catch (error) {
+      toast.warning(`${error}`);
+    }
   };
 
   const activeTenant = tenants[0];
@@ -208,10 +221,14 @@ export default function AppSidebar({ navItems }: { navItems: NavItem[] }) {
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <IconLogout className='mr-2 h-4 w-4' />
-                  {/* <SignOutButton redirectUrl='/auth/sign-in' /> */}
-                </DropdownMenuItem>
+                <Button
+                  variant='outline'
+                  className='w-full justify-center bg-red-500 text-white hover:bg-red-600 hover:text-white'
+                  onClick={handleSignOutClick}
+                >
+                  <IconLogout className='mr-2 h-5 w-5' />
+                  Sign out
+                </Button>
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
