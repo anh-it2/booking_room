@@ -1,39 +1,49 @@
 import {
   IconAlertTriangle,
   IconArrowRight,
+  IconBrandGithub,
+  IconBrandTwitter,
   IconCheck,
   IconChevronLeft,
   IconChevronRight,
   IconCommand,
   IconCreditCard,
+  IconDeviceLaptop,
+  IconDotsVertical,
   IconFile,
   IconFileText,
   IconHelpCircle,
-  IconPhoto,
-  IconDeviceLaptop,
   IconLayoutDashboard,
+  IconLayoutKanban,
   IconLoader2,
   IconLogin,
-  IconProps,
-  IconShoppingBag,
   IconMoon,
-  IconDotsVertical,
+  IconPhoto,
   IconPizza,
   IconPlus,
+  IconProps,
   IconSettings,
+  IconShield,
+  IconShoppingBag,
   IconSun,
   IconTrash,
-  IconBrandTwitter,
   IconUser,
   IconUserCircle,
   IconUserEdit,
   IconUserX,
-  IconX,
-  IconLayoutKanban,
-  IconBrandGithub,
-  IconShield,
+  IconX
 } from '@tabler/icons-react';
-import{Contact, Globe, CalendarDays, CheckCircle2, XCircle, Clock, Ban, Building, Presentation, BookOpen, List} from 'lucide-react'
+import {
+  Ban,
+  CalendarDays,
+  CheckCircle2,
+  Clock,
+  Contact,
+  Globe,
+  List,
+  Presentation,
+  XCircle
+} from 'lucide-react';
 
 export type Icon = React.ComponentType<IconProps>;
 
@@ -79,5 +89,5 @@ export const Icons = {
   profile: IconUserCircle,
   security: IconShield,
   room: Presentation,
-  calendar: List,
-}
+  calendar: List
+};

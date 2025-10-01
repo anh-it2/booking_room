@@ -59,9 +59,8 @@ const tenants = [
   { id: '3', name: 'Gamma Ltd' }
 ];
 
-export default function AppSidebar({navItems}:{navItems: NavItem[]}) {
-  const loading = useLoadingState((state) => state.loading)
-  const setLoading = useLoadingState((state) => state.setLoading)
+export default function AppSidebar({ navItems }: { navItems: NavItem[] }) {
+  const setLoading = useLoadingState((state) => state.setLoading);
   const pathname = usePathname();
   const { isOpen } = useMediaQuery();
   const { user } = useUser();
@@ -104,9 +103,9 @@ export default function AppSidebar({navItems}:{navItems: NavItem[]}) {
                         tooltip={item.title}
                         isActive={pathname === item.url}
                       >
-                          {item.icon && <Icon />}
-                          <span>{item.title}</span>
-                          <IconChevronRight className='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
+                        {item.icon && <Icon />}
+                        <span>{item.title}</span>
+                        <IconChevronRight className='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
                       </SidebarMenuButton>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
@@ -119,8 +118,12 @@ export default function AppSidebar({navItems}:{navItems: NavItem[]}) {
                             >
                               <Link href={subItem.url}>
                                 <span
-                                  onClick={() => {setLoading(true)}}
-                                >{subItem.title}</span>
+                                  onClick={() => {
+                                    setLoading(true);
+                                  }}
+                                >
+                                  {subItem.title}
+                                </span>
                               </Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
@@ -139,8 +142,12 @@ export default function AppSidebar({navItems}:{navItems: NavItem[]}) {
                     <Link href={item.url}>
                       <Icon />
                       <span
-                        onClick={() => {setLoading(true)}}
-                      >{item.title}</span>
+                        onClick={() => {
+                          setLoading(true);
+                        }}
+                      >
+                        {item.title}
+                      </span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
