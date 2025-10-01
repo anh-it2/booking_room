@@ -52,7 +52,9 @@ const formSchema = z.object({
   name: z.string().min(2, {
     message: `Location's name must be at least 2 characters.`
   }),
-  address: z.string().min(2,{message: 'Address must be at least 2 characters'}),
+  address: z
+    .string()
+    .min(2, { message: 'Address must be at least 2 characters' }),
   postalCode: z.string(),
   city: z.string(),
   country: z.string(),
@@ -69,16 +71,16 @@ export default function LocationForm({
   initialData: Location | undefined;
   pageTitle: string;
   confirmBtn: string;
-  id:number
+  id: number;
 }) {
   const defaultValues = {
     name: initialData?.name || '',
     address: initialData?.address || '',
     city: initialData?.city || '',
-    postalCode: initialData?.postalCode ||'',
+    postalCode: initialData?.postalCode || '',
     country: initialData?.country || '',
     description: initialData?.description || '',
-    active: initialData?.active || false
+    active: initialData?.active || true
   };
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -86,92 +88,105 @@ export default function LocationForm({
     values: defaultValues
   });
 
-  const router = useRouter()
-  const [loading, setLoading] = useState<boolean>(false)
+  const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if(pageTitle ==='' || confirmBtn ===''){
-      setLoading(true)
-    }else{
-      setLoading(false)
+    if (pageTitle === '' || confirmBtn === '') {
+      setLoading(true);
+    } else {
+      setLoading(false);
     }
-  },[pageTitle, confirmBtn])
+  }, [pageTitle, confirmBtn]);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    if(pageTitle === 'Create Location'){
-      setLoading(true)
+    if (pageTitle === 'Create Location') {
+      setLoading(true);
 
-      await postApi(`${baseUrl}/api/locations`,{},values)
-      router.replace('/dashboard/admin/location')
-    } else if(pageTitle === 'Edit Location'){
-      setLoading(true)
+      await postApi(`${baseUrl}/api/locations`, {}, values);
+      router.replace('/dashboard/admin/location');
+    } else if (pageTitle === 'Edit Location') {
+      setLoading(true);
 
-      await putApi(`${baseUrl}/api/locations/${id}`,{},values)
-      router.replace('/dashboard/admin/location')
+      await putApi(`${baseUrl}/api/locations/${id}`, {}, values);
+      router.replace('/dashboard/admin/location');
     }
   }
 
   return (
     <>
-      {loading? <FormCardSkeleton />
-      :<Card className='mx-auto w-full '>
-        <CardHeader>
-          <CardTitle className='text-left text-2xl font-bold'>
-            {pageTitle}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
-              <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
-                <FormField
-                  control={form.control}
-                  name='name'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{`Location's Name`}</FormLabel>
-                      <FormControl>
-                        <Input placeholder='Enter location name' {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name='address'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Address</FormLabel>
-                      <FormControl>
-                        <Input placeholder='Enter address of location' {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name='postalCode'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Postal Code</FormLabel>
-                      <FormControl>
-                        <Input placeholder='Enter address of location' {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <div className='flex gap-20 mx-auto'>
+      {loading ? (
+        <FormCardSkeleton />
+      ) : (
+        <Card className='mx-auto w-full'>
+          <CardHeader>
+            <CardTitle className='text-left text-2xl font-bold'>
+              {pageTitle}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className='space-y-8'
+              >
+                <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
                   <FormField
+                    control={form.control}
+                    name='name'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{`Location's Name`}</FormLabel>
+                        <FormControl>
+                          <Input placeholder='Enter location name' {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name='address'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Address</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder='Enter address of location'
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name='postalCode'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Postal Code</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder='Enter address of location'
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <div className='mx-auto flex gap-20'>
+                    <FormField
                       control={form.control}
                       name='active'
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Trạng thái</FormLabel>
                           <Select
-                            onValueChange={(value) => field.onChange(value === "true")}
+                            onValueChange={(value) =>
+                              field.onChange(value === 'true')
+                            }
                             value={field.value.toString()}
                           >
                             <FormControl>
@@ -180,8 +195,12 @@ export default function LocationForm({
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              <SelectItem value='true'>Đang hoạt động</SelectItem>
-                              <SelectItem value='false'>Đã ngừng hoạt động</SelectItem>
+                              <SelectItem value='true'>
+                                Đang hoạt động
+                              </SelectItem>
+                              <SelectItem value='false'>
+                                Đã ngừng hoạt động
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
@@ -205,65 +224,70 @@ export default function LocationForm({
                             </FormControl>
                             <SelectContent>
                               <SelectItem value='Hà Nội'>Hà Nội</SelectItem>
-                              <SelectItem value='T.P HCM'>Hồ Chí Minh</SelectItem>
+                              <SelectItem value='T.P HCM'>
+                                Hồ Chí Minh
+                              </SelectItem>
                               <SelectItem value='Đà Nẵng'>Đà Nẵng</SelectItem>
-                              <SelectItem value='Hải Phòng'>Hải Phòng</SelectItem>
+                              <SelectItem value='Hải Phòng'>
+                                Hải Phòng
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
-                  <FormField
-                    control={form.control}
-                    name='country'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Country</FormLabel>
-                        <Select
-                          onValueChange={(value) => field.onChange(value)}
-                          value={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder='Select Country' />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value='Việt Nam'>Việt Nam</SelectItem>
-                            <SelectItem value='Lào'>Lào</SelectItem>
-                            <SelectItem value='Thái Lan'>Thái Lan</SelectItem>
-                            <SelectItem value='Myanmar'>Myanmar</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                    <FormField
+                      control={form.control}
+                      name='country'
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Country</FormLabel>
+                          <Select
+                            onValueChange={(value) => field.onChange(value)}
+                            value={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder='Select Country' />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value='Việt Nam'>Việt Nam</SelectItem>
+                              <SelectItem value='Lào'>Lào</SelectItem>
+                              <SelectItem value='Thái Lan'>Thái Lan</SelectItem>
+                              <SelectItem value='Myanmar'>Myanmar</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
                 </div>
-              </div>
-              <FormField
-                control={form.control}
-                name='description'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Description</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder='Enter product description'
-                        className='resize-none'
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type='submit'>{confirmBtn}</Button>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>}
+                <FormField
+                  control={form.control}
+                  name='description'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Description</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder='Enter product description'
+                          className='resize-none'
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type='submit'>{confirmBtn}</Button>
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
+      )}
     </>
   );
 }
