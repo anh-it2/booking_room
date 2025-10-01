@@ -132,18 +132,18 @@ export default function UserAuthForm({ mode }: { mode: AuthMode }) {
       }
     } else {
       setLoading(true);
+      const { email, password } = data;
+      const payload = { email: email, password: password };
 
-      const response = fetch(`${baseUrl}/api/auth/register`, {
+      await fetch(`${baseUrl}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(payload)
       });
-
-      const res = await (await response).json();
-      setRole(res.data.role);
-      router.push('dashboard/user/booking');
+      setRole('USER');
+      router.replace('/dashboard/user/booking');
     }
   };
 

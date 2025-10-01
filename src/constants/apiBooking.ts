@@ -56,6 +56,9 @@ export const initData = {
       const res = await getApi(`${baseUrl}/api/admin/booking`);
       const data = await res.json();
       const bookingData = data.data;
+
+      if (bookingData === undefined) return;
+
       bookingData.map((item: any) => {
         const booking = {
           id: item.id,
